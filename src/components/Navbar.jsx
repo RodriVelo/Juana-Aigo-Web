@@ -11,7 +11,6 @@ const ENLACES_NAVEGACION = [
   { etiqueta: "Publicaciones", ruta: "/publicaciones" },
   { etiqueta: "Libros", ruta: "/libros" },
   { etiqueta: "Tesis", ruta: "/tesis" },
-  { etiqueta: "Docencia", ruta: "/docencia" },
   { etiqueta: "Congresos", ruta: "/congresos" },
 ];
 

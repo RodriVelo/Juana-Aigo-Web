@@ -8,7 +8,6 @@ import Research from "./pages/Research.jsx";
 import Publications from "./pages/Publications.jsx";
 import Books from "./pages/Books.jsx";
 import Thesis from "./pages/Thesis.jsx";
-import Teaching from "./pages/Teaching.jsx";
 import Congress from "./pages/Congress.jsx";
 import Contact from "./pages/Contact.jsx";
 
@@ -35,7 +34,6 @@ function App() {
           <Route path="/publicaciones" element={<Publications />} />
           <Route path="/libros" element={<Books />} />
           <Route path="/tesis" element={<Thesis />} />
-          <Route path="/docencia" element={<Teaching />} />
           <Route path="/congresos" element={<Congress />} />
           <Route path="/contacto" element={<Contact />} />
         </Route>
