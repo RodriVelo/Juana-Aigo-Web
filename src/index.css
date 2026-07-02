@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Estilos base del sitio ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-arena-50 text-bosque-800 font-sans antialiased;
+}
+
+::selection {
+  @apply bg-bosque-300/50 text-bosque-900;
+}
+
+/* Foco de teclado visible, accesible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid theme("colors.bosque.400");
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ===== Componentes utilitarios reutilizables ===== */
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .etiqueta-eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-bosque-400;
+  }
+
+  .titulo-display {
+    @apply font-display text-bosque-800;
+  }
+}
+
+/* Respeta preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
