@@ -1,6 +1,6 @@
 // Información general del perfil profesional
 export const perfil = {
-  nombreCompleto: "Dra. Juana Aigo",
+  nombreCompleto: "Juana Aigo",
   titulo: "Bióloga · Investigadora en Conservación",
   fraseDestacada:
     "Especialista en investigación y conservación de ecosistemas de humedales y bosque nativo.",
