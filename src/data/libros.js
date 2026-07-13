@@ -31,7 +31,7 @@ export const libros = [
       "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop",
     descripcion:
       "Manual técnico orientado a profesionales del manejo forestal, con énfasis en criterios ecológicos de restauración post-disturbio.",
-    destacado: false,
+    destacado: true,
   },
   {
     id: "libro-04",
