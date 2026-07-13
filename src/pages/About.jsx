@@ -17,8 +17,8 @@ function About() {
       <section className="contenedor grid gap-14 py-24 md:grid-cols-[0.85fr_1.15fr] md:items-start">
         <div className="overflow-hidden rounded-xl2 shadow-suave md:sticky md:top-28">
           <img
-            src={fotoPerfil}
-            alt="Retrato profesional de la Dra. Valentina Correa"
+            src="https://scontent.fcpc1-1.fna.fbcdn.net/v/t1.6435-9/95346514_10221208033046943_1862183470336311296_n.jpg?stp=dst-jpg_tt6&cstp=mx691x691&ctp=s691x691&_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFsRPfBrxlBN4KIdYKzrxHs7vaiccQM0xfu9qJxxAzTF7IWxTh3yahnfJHqnglo2z7vzxcsNcrRzISF1wNTR4AB&_nc_ohc=Wtrj_JaJrXYQ7kNvwHvf_za&_nc_oc=AdovaULFpkgfjiz9wWa7Jid7eYNwwfU1SowSAf37-sxeHJDfT2uCxmSUYuuZ-tFqlY0yYntIPBi_mcAa7qgM_bJP&_nc_zt=23&_nc_ht=scontent.fcpc1-1.fna&_nc_gid=F2kvpNFyG4C0NyE96SIp5A&_nc_ss=7b2a8&oh=00_AQClVjoZR5zoK9AZY4RnYtyyMVWH4e8nhd-Lz0keGNmpvg&oe=6A7C87F4"
+            alt="Retrato profesional de Juana Aigo"
             className="h-full w-full object-cover"
           />
         </div>

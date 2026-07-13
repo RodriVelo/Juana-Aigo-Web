@@ -16,9 +16,7 @@ export const perfil = {
   ubicacion: "Junin de los Andes, Neuquén, Argentina",
   whatsapp: "54 23452345",
   redesSociales: [
-    { nombre: "LinkedIn", url: "https://linkedin.com" },
-    { nombre: "ResearchGate", url: "https://researchgate.net" },
-    { nombre: "Google Scholar", url: "https://scholar.google.com" },
+    { nombre: "Facebook", url: "https://linkedin.com" },
     { nombre: "Instagram", url: "https://instagram.com" },
   ],
   estadisticas: [
