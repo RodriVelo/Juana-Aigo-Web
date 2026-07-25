@@ -13,7 +13,7 @@ import Extension from "./pages/extension/Extension.jsx";
 import ComunidadesMapuches from "./pages/extension/ComunidadesMapuches.jsx";
 import OtrasActividades from "./pages/extension/OtrasActividades.jsx";
 
-import CargosGestion from "./pages/gestionDocencia/cargosGestion.jsx";
+import CargosGestion from "./pages/gestionDocencia/CargosGestion.jsx";
 import OrganizacionEventos from "./pages/gestionDocencia/OrganizacionEventos.jsx"
 import GestionEditorial from "./pages/gestionDocencia/GestionEditorial.jsx";
 import Docencia from "./pages/gestionDocencia/Docencia.jsx";
