@@ -1,22 +1,92 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X, Leaf, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "./Button.jsx";
 
 const ENLACES_NAVEGACION = [
-  { etiqueta: "Inicio", ruta: "/" },
   { etiqueta: "Sobre mí", ruta: "/sobre-mi" },
   { etiqueta: "Investigación", ruta: "/investigacion" },
-  { etiqueta: "Publicaciones", ruta: "/publicaciones" },
-  { etiqueta: "Libros", ruta: "/libros" },
-  { etiqueta: "Tesis", ruta: "/tesis" },
+  { etiqueta: "Informes Técnicos", ruta: "/informestecnicos" },
   { etiqueta: "Congresos", ruta: "/congresos" },
+    {
+    etiqueta: "Formación de Recursos Humanos",
+    ruta: "/formacionderecursoshumanos",
+  },
+  {
+    etiqueta: "Publicaciones",
+
+    subItems: [
+      {
+        etiqueta: "Publicaciones Científicas",
+        ruta: "/publicaciones/cientificas",
+      },
+      {
+        etiqueta: "Artículos de Divulgación",
+        ruta: "/publicaciones/divulgacion",
+      },
+    ],
+  },
+  {
+    etiqueta: "Extensión",
+
+    subItems: [
+      { etiqueta: "Proyectos de Extensión", ruta: "/extension/proyectos" },
+      {
+        etiqueta: "Trabajos con Comunidades Mapuches",
+        ruta: "/extension/comunidadesmapuches",
+      },
+      { etiqueta: "Otras Actividades", ruta: "/extension/otrasactividades" },
+    ],
+  },
+  {
+    etiqueta: "Gestión y Docencia",
+    subItems: [
+      {
+        etiqueta: "Cargos y Gestión",
+        ruta: "/gestionydocencia/cargosygestion",
+      },
+      {
+        etiqueta: "Organización de Eventos",
+        ruta: "/gestionydocencia/organizaciondeeventos",
+      },
+      {
+        etiqueta: "Gestión Editorial",
+        ruta: "/gestionydocencia/gestioneditorial",
+      },
+      { etiqueta: "Docencia", ruta: "/gestionydocencia/docencia" },
+    ],
+  },
+  {
+    etiqueta: "Divulgación",
+
+    subItems: [
+      {
+        etiqueta: "Divulgaciones Científicas",
+        ruta: "/divulgacion/cientificas",
+      },
+      { etiqueta: "Charlas", ruta: "/divulgacion/charlas" },
+      { etiqueta: "Entrevistas", ruta: "/divulgacion/entrevistas" },
+      { etiqueta: "Actividades", ruta: "/divulgacion/actividades" },
+    ],
+  },
+  {
+    etiqueta: "Cruce Arte-Ciencia",
+
+    subItems: [
+      { etiqueta: "Audiovisuales", ruta: "/crucearteciencia/audiovisuales" },
+      { etiqueta: "Podcasts", ruta: "/crucearteciencia/podcasts" },
+    ],
+  },
+
 ];
 
 function Navbar() {
   const [conScroll, setConScroll] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [submenuEscritorioAbierto, setSubmenuEscritorioAbierto] =
+    useState(null);
+  const [submenuMovilAbierto, setSubmenuMovilAbierto] = useState(null);
+  const temporizadorCierre = useRef(null);
 
   useEffect(() => {
     function alHacerScroll() {
@@ -30,18 +100,36 @@ function Navbar() {
     setMenuAbierto(false);
   }, []);
 
+  function abrirSubmenu(etiqueta) {
+    if (temporizadorCierre.current) {
+      clearTimeout(temporizadorCierre.current);
+      temporizadorCierre.current = null;
+    }
+    setSubmenuEscritorioAbierto(etiqueta);
+  }
+
+  function programarCierreSubmenu() {
+    temporizadorCierre.current = setTimeout(() => {
+      setSubmenuEscritorioAbierto(null);
+    }, 150);
+  }
+
+  function alternarSubmenuMovil(etiqueta) {
+    setSubmenuMovilAbierto((actual) => (actual === etiqueta ? null : etiqueta));
+  }
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`pt-2 fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         conScroll
           ? "bg-arena-50/90 shadow-tarjeta backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <nav className="contenedor flex h-20 items-center justify-between">
+      <nav className="contenedor flex items-center justify-between gap-8 py-5">
         <NavLink
           to="/"
-          className="flex items-center gap-2 font-display text-lg font-medium tracking-tight"
+          className="flex shrink-0 items-center gap-2 font-display text-lg font-medium tracking-tight"
         >
           <Leaf
             size={22}
@@ -53,35 +141,89 @@ function Navbar() {
           </span>
         </NavLink>
 
-        {/* Navegación de escritorio */}
-        <ul className="hidden items-center gap-7 lg:flex">
+        {/* Navegación de escritorio: se envuelve en dos filas */}
+        <ul className="hidden max-w-[820px] flex-wrap items-center justify-end gap-x-7 gap-y-3 lg:flex">
           {ENLACES_NAVEGACION.map((enlace) => (
-            <li key={enlace.ruta}>
-              <NavLink
-                to={enlace.ruta}
-                className={({ isActive }) =>
-                  `text-sm tracking-wide transition-colors duration-200 ${
+            <li
+              key={enlace.ruta}
+              className="relative"
+              onMouseEnter={() =>
+                enlace.subItems && abrirSubmenu(enlace.etiqueta)
+              }
+              onMouseLeave={() => enlace.subItems && programarCierreSubmenu()}
+            >
+              {enlace.subItems ? (
+                <button
+                  type="button"
+                  className={`flex items-center gap-1 whitespace-nowrap text-sm tracking-wide transition-colors duration-200 ${
                     conScroll
-                      ? isActive
-                        ? "text-bosque-700 font-medium"
-                        : "text-piedra-500 hover:text-bosque-700"
-                      : isActive
-                      ? "text-arena-50 font-medium"
+                      ? "text-piedra-500 hover:text-bosque-700"
                       : "text-arena-100/80 hover:text-arena-50"
-                  }`
-                }
-              >
-                {enlace.etiqueta}
-              </NavLink>
+                  }`}
+                >
+                  {enlace.etiqueta}
+                  <ChevronDown
+                    size={14}
+                    strokeWidth={2}
+                    className={`transition-transform duration-200 ${
+                      submenuEscritorioAbierto === enlace.etiqueta
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </button>
+              ) : (
+                <NavLink
+                  to={enlace.ruta}
+                  className={({ isActive }) =>
+                    `flex items-center gap-1 whitespace-nowrap text-sm tracking-wide transition-colors duration-200 ${
+                      conScroll
+                        ? isActive
+                          ? "text-bosque-700 font-medium"
+                          : "text-piedra-500 hover:text-bosque-700"
+                        : isActive
+                          ? "text-arena-50 font-medium"
+                          : "text-arena-100/80 hover:text-arena-50"
+                    }`
+                  }
+                >
+                  {enlace.etiqueta}
+                </NavLink>
+              )}
+
+              {enlace.subItems && (
+                <AnimatePresence>
+                  {submenuEscritorioAbierto === enlace.etiqueta && (
+                    <motion.ul
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="absolute left-0 top-full mt-3 min-w-[250px] rounded-xl border border-piedra-100 bg-arena-50 py-2 shadow-tarjeta"
+                    >
+                      {enlace.subItems.map((subItem) => (
+                        <li key={subItem.ruta}>
+                          <NavLink
+                            to={subItem.ruta}
+                            className={({ isActive }) =>
+                              `block px-4 py-2.5 text-sm tracking-wide transition-colors duration-200 ${
+                                isActive
+                                  ? "bg-bosque-50 font-medium text-bosque-700"
+                                  : "text-piedra-500 hover:bg-bosque-50 hover:text-bosque-700"
+                              }`
+                            }
+                          >
+                            {subItem.etiqueta}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              )}
             </li>
           ))}
         </ul>
-
-        <div className="hidden lg:block">
-          <Button variante={conScroll ? "primario" : "claro"} enlaceInterno="/contacto">
-            Contactar
-          </Button>
-        </div>
 
         {/* Botón menú móvil */}
         <button
@@ -104,34 +246,74 @@ function Navbar() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden bg-arena-50 shadow-suave lg:hidden"
           >
-            <ul className="contenedor flex flex-col gap-1 py-4">
+            <ul className="contenedor flex max-h-[75vh] flex-col gap-2 overflow-y-auto py-6">
               {ENLACES_NAVEGACION.map((enlace) => (
                 <li key={enlace.ruta}>
-                  <NavLink
-                    to={enlace.ruta}
-                    onClick={() => setMenuAbierto(false)}
-                    className={({ isActive }) =>
-                      `block rounded-lg px-3 py-3 text-sm ${
-                        isActive
-                          ? "bg-bosque-50 font-medium text-bosque-700"
-                          : "text-piedra-500"
-                      }`
-                    }
-                  >
-                    {enlace.etiqueta}
-                  </NavLink>
+                  {enlace.subItems ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => alternarSubmenuMovil(enlace.etiqueta)}
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-3.5 text-left text-[15px] text-piedra-500"
+                      >
+                        {enlace.etiqueta}
+                        <ChevronDown
+                          size={16}
+                          strokeWidth={2}
+                          className={`transition-transform duration-200 ${
+                            submenuMovilAbierto === enlace.etiqueta
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {submenuMovilAbierto === enlace.etiqueta && (
+                          <motion.ul
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                            className="overflow-hidden pl-3"
+                          >
+                            {enlace.subItems.map((subItem) => (
+                              <li key={subItem.ruta}>
+                                <NavLink
+                                  to={subItem.ruta}
+                                  onClick={() => setMenuAbierto(false)}
+                                  className={({ isActive }) =>
+                                    `block rounded-lg px-3 py-3 text-sm ${
+                                      isActive
+                                        ? "bg-bosque-50 font-medium text-bosque-700"
+                                        : "text-piedra-500"
+                                    }`
+                                  }
+                                >
+                                  {subItem.etiqueta}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <NavLink
+                      to={enlace.ruta}
+                      onClick={() => setMenuAbierto(false)}
+                      className={({ isActive }) =>
+                        `block rounded-lg px-3 py-3.5 text-[15px] ${
+                          isActive
+                            ? "bg-bosque-50 font-medium text-bosque-700"
+                            : "text-piedra-500"
+                        }`
+                      }
+                    >
+                      {enlace.etiqueta}
+                    </NavLink>
+                  )}
                 </li>
               ))}
-              <li className="pt-2">
-                <Button
-                  variante="primario"
-                  enlaceInterno="/contacto"
-                  className="w-full"
-                  onClick={() => setMenuAbierto(false)}
-                >
-                  Contactar
-                </Button>
-              </li>
             </ul>
           </motion.div>
         )}

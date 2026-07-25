@@ -56,9 +56,6 @@ function Hero() {
           <Button variante="primario" enlaceInterno="/sobre-mi" icono={ArrowRight}>
             Conocer más
           </Button>
-          <Button variante="claro" enlaceInterno="/contacto" icono={Mail}>
-            Contactar
-          </Button>
         </motion.div>
       </div>
     </section>

@@ -16,7 +16,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <Footer />
-      <BotonWhatsApp />
+
       <BotonVolverArriba />
     </div>
   );

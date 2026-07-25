@@ -1,5 +1,5 @@
 // Listado de publicaciones científicas
-export const publicaciones = [
+export const publicacionesCientificas = [
   {
     id: "pub-01",
     titulo: "Estrategias de restauración activa en humedales patagónicos degradados",
@@ -61,3 +61,4 @@ export const publicaciones = [
     destacada: false,
   },
 ];
+

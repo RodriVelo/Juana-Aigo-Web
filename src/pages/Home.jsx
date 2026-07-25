@@ -8,12 +8,12 @@ import BookCard from "../components/BookCard.jsx";
 import ContadorEstadisticas from "../components/ContadorEstadisticas.jsx";
 import { perfil } from "../data/perfil.js";
 import { investigaciones } from "../data/investigaciones.js";
-import { publicaciones } from "../data/publicaciones.js";
+import { publicacionesCientificas } from "../data/publicaciones.js";
 import { libros } from "../data/libros.js";
 
 function Home() {
   const investigacionesDestacadas = investigaciones.slice(0, 3);
-  const publicacionesDestacadas = publicaciones.filter(
+  const publicacionesDestacadas = publicacionesCientificas.filter(
     (publicacion) => publicacion.destacada
   );
   const librosDestacados = libros.filter((libro) => libro.destacado);
@@ -115,23 +115,6 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA de contacto */}
-      <section className="contenedor pb-28">
-        <div className="flex flex-col items-start gap-6 rounded-xl2 bg-bosque-50 p-10 md:flex-row md:items-center md:justify-between md:p-14">
-          <div className="flex flex-col gap-3">
-            <h2 className="font-display text-2xl font-medium text-bosque-800 md:text-3xl">
-              ¿Interesada o interesado en colaborar?
-            </h2>
-            <p className="max-w-lg text-base leading-relaxed text-piedra-500">
-              Estoy abierta a proyectos de investigación conjunta, actividades de divulgación
-              y consultorías en conservación ambiental.
-            </p>
-          </div>
-          <Button variante="primario" enlaceInterno="/contacto" icono={ArrowRight}>
-            Escribime
-          </Button>
-        </div>
-      </section>
     </>
   );
 }
