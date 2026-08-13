@@ -26,7 +26,7 @@ function Home() {
       <section className="contenedor grid gap-12 py-24 md:grid-cols-2 md:items-center">
         <div className="overflow-hidden rounded-xl2 shadow-suave">
           <img
-            src="https://scontent.fcpc1-1.fna.fbcdn.net/v/t1.6435-9/159333727_10223799567153676_5260459907476042500_n.jpg?stp=dst-jpg_tt6&cstp=mx2000x2015&ctp=s2000x2015&_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE0XM1iHaZxhOVBr3EoMBzoePab49nqCYl49pvj2eoJiRaAcOjKoW1N77BjRbjL8gpNpg5HYWSNax9MbmhkzEO7&_nc_ohc=dx1E7nYh5a4Q7kNvwFSCmlY&_nc_oc=Adrs7K8hogFwWqpZDrhPLmll86K6G2V1KzoyTMugB0S3wfHUR1y5Xq633f9qhr0j3L5qO5qHdbTtWiGu5M6im4IP&_nc_zt=23&_nc_ht=scontent.fcpc1-1.fna&_nc_gid=qPl5GLhNzCngRa-OdH4rLA&_nc_ss=7b2a8&oh=00_AQBEk81u1VYNbiwI5R4eGGYkzAs-U6i-gXHs4A_qCqBUVw&oe=6A7CACEF"
+            src="https://scontent.fnqn11-2.fna.fbcdn.net/v/t1.6435-9/159333727_10223799567153676_5260459907476042500_n.jpg?stp=dst-jpg_tt6&cstp=mx2000x2015&ctp=s2000x2015&_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE0XM1iHaZxhOVBr3EoMBzoePab49nqCYl49pvj2eoJiRaAcOjKoW1N77BjRbjL8gpNpg5HYWSNax9MbmhkzEO7&_nc_ohc=CZuyTE7iDdYQ7kNvwHfDhPQ&_nc_oc=Adod36Y74Zs4c-gZVoMNZf2zMA776hB3CMDLNCxke-ihzasRdTNtcThXUxKPbW-PCa4&_nc_zt=23&_nc_ht=scontent.fnqn11-2.fna&_nc_gid=MNI0q4Go2ncuKw0p4_5u0w&_nc_ss=7b2a8&oh=00_AQE4eKjsTXEm46ynsAxnrvlNrvVUBy9vUVnAgJO7D-TZ3w&oe=6AA58B6F"
             alt="Juana Aigo realizando trabajo de campo"
             className="h-full w-full object-cover"
           />
